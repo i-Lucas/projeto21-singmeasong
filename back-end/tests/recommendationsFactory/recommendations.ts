@@ -11,30 +11,23 @@ function createRecommendation() {
 
 async function insertRecommendationInDatabase(recommendation: any) {
 
-    const result = await prisma.recommendation.create({
-        data: recommendation
-    });
-
-    return result;
+    return await prisma.recommendation.create({ data: recommendation });
 };
 
 async function getRecommendationsFromDatabase(name: string) {
 
     return await prisma.recommendation.findFirst({ where: { name } });
-}
+};
 
 async function getRecommendationsFromAmount(amount: number) {
 
-    return await prisma.recommendation.findMany({
-        take: amount,
-        orderBy: { score: 'desc' }
-    });
-}
+    return await prisma.recommendation.findMany({ take: amount, orderBy: { score: 'desc' } });
+};
 
 async function getAllRecommendations() {
 
     return await prisma.recommendation.findMany();
-}
+};
 
 const recommendationsFactory = {
     createRecommendation,
