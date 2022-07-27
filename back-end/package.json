@@ -11,7 +11,7 @@
     "dev:test": "dotenv -e .env.test nodemon src/server.ts",
     "prisma": "prisma migrate dev",
     "prisma-seed": "prisma db seed",
-    "test": "dotenv -e .env.test prisma migrate dev && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i",
+    "test": "dotenv -e .env.test prisma migrate dev && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i",
     "seedtest": "dotenv -e .env.test npx prisma migrate reset"
   },
   "prisma": {
