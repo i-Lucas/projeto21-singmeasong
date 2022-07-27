@@ -11,8 +11,6 @@ function createRecommendation() {
 
 async function insertRecommendationInDatabase(recommendation: any) {
 
-    console.log(recommendation)
-
     const result = await prisma.recommendation.create({
         data: recommendation
     });
@@ -25,10 +23,25 @@ async function getRecommendationsFromDatabase(name: string) {
     return await prisma.recommendation.findFirst({ where: { name } });
 }
 
+async function getRecommendationsFromAmount(amount: number) {
+
+    return await prisma.recommendation.findMany({
+        take: amount,
+        orderBy: { score: 'desc' }
+    });
+}
+
+async function getAllRecommendations() {
+
+    return await prisma.recommendation.findMany();
+}
+
 const recommendationsFactory = {
     createRecommendation,
     insertRecommendationInDatabase,
-    getRecommendationsFromDatabase
+    getRecommendationsFromDatabase,
+    getRecommendationsFromAmount,
+    getAllRecommendations
 };
 
 export default recommendationsFactory;
