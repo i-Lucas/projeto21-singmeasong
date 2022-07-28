@@ -1,6 +1,6 @@
 import supertest from 'supertest';
-import app from '../src/app.js';
-import { prisma } from '../src/database.js';
+import app from '../../src/app.js';
+import { prisma } from '../../src/database.js';
 import recommendationsFactory from './recommendationsFactory/recommendations.js';
 
 describe('downvote recommendation route', () => {
