@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { recommendationSchema } from "../schemas/recommendationsSchemas.js";
+import { recommendationRepository } from "../repositories/recommendationRepository.js";
 import { recommendationService } from "../services/recommendationsService.js";
 import { wrongSchemaError } from "../utils/errorUtils.js";
 
@@ -55,6 +56,11 @@ async function getById(req: Request, res: Response) {
   res.send(recommendation);
 }
 
+async function cleandb(req: Request, res: Response) {
+  await recommendationRepository.cleandb();
+  res.sendStatus(200);
+}
+
 export const recommendationController = {
   insert,
   upvote,
@@ -63,4 +69,5 @@ export const recommendationController = {
   getTop,
   get,
   getById,
+  cleandb
 };
